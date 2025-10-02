@@ -5,17 +5,13 @@ import Button from "./button";
 import { IoMdHeart } from "react-icons/io";
 import { TiThMenu } from "react-icons/ti";
 import { IoCloseSharp } from "react-icons/io5";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Modal } from "react-bootstrap";
-import Button from "./button";
-import { IoMdHeart } from "react-icons/io";
-import { TiThMenu } from "react-icons/ti";
-import { IoCloseSharp } from "react-icons/io5";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState(null);
   const [opentoogle, setopentoogle] = useState(false);
+  const [active, setActive] = useState(
+    localStorage.getItem("activeNavItem") || "home"
+  );
 
   const handleNavLinkClick = (index) => {
     setActiveLink(index);
@@ -25,12 +21,11 @@ const Navbar = () => {
   const handleOpen = () => {
     setopentoogle(true);
   };
+  
   const handleClose = () => {
     setopentoogle(false);
   };
-  const [active, setActive] = useState(
-    localStorage.getItem("activeNavItem") || "home"
-  );
+
   const navLinks = [
     { label: "Home", to: "/" },
     { label: "About us ", to: "/about" },
@@ -52,11 +47,13 @@ const Navbar = () => {
     },
     { label: "Contact us", to: "/contact" },
   ];
+  
   const goTODoc = () => {
     window.location.assign(
       "https://docs.google.com/forms/d/e/1FAIpQLSf2WGtPQWyZGgFisJ-Wl2lnYghkCaklYo-kmvXYGsO11t5f-A/viewform?embedded=true"
     );
   };
+  
   return (
     <nav className="navbar-container" role="navigation" aria-label="Main navigation">
       <div className="logo-container">
